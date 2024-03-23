@@ -13,6 +13,14 @@ public class BombSpawner : MonoBehaviour
 
     private float timer = 0f;
 
+    private List<Vector3> bombPositions = new List<Vector3>(); // Initialize the list
+
+    void Start()
+    {
+        // Optional: Add the initial bomb position if needed
+        AddBombPosition(playerTransform.position + playerTransform.forward * spawnDistance);
+    }
+
     void Update()
     {
         timer += Time.deltaTime;
@@ -34,6 +42,9 @@ public class BombSpawner : MonoBehaviour
 
         // Start the timer coroutine for the bomb
         StartCoroutine(DestroyBombAfterDelay(bomb, bombTimerDuration));
+
+        // Add the bomb position to the list
+        AddBombPosition(spawnPosition);
     }
 
     IEnumerator DestroyBombAfterDelay(GameObject bomb, float delay)
@@ -64,6 +75,12 @@ public class BombSpawner : MonoBehaviour
         }
 
         return spawnPosition;
+    }
+
+    // Method to add bomb positions to the list
+    public void AddBombPosition(Vector3 position)
+    {
+        bombPositions.Add(position);
     }
 
 }

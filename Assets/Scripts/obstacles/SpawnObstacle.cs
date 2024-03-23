@@ -6,10 +6,13 @@ public class SpawnObstacle : MonoBehaviour
 {
     public Transform playerTransform;
     public float spawnDistance = 10f;
+    public float minDistanceBetweenBombs = 5f; // Define the minimum distance between bombs here
     public GameObject[] obstaclePrefabs;
 
     private GameObject currentObstacle;
     private Vector3 hiddenPosition;
+
+    private List<Vector3> bombPositions = new List<Vector3>();
 
     void Start()
     {
@@ -23,7 +26,7 @@ public class SpawnObstacle : MonoBehaviour
         if (currentObstacle == null)
         {
             // Calculate spawn position
-            Vector3 spawnPosition = playerTransform.position + playerTransform.forward * spawnDistance;
+            Vector3 spawnPosition = CalculateObstacleSpawnPosition();
 
             // Randomly select an obstacle prefab
             GameObject obstaclePrefab = obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)];
@@ -44,5 +47,37 @@ public class SpawnObstacle : MonoBehaviour
                 currentObstacle = null;
             }
         }
+    }
+
+    Vector3 CalculateObstacleSpawnPosition()
+    {
+        Vector3 spawnPosition = playerTransform.position + playerTransform.forward * spawnDistance;
+
+        // Check if the spawn position is too close to any bomb positions
+        while (IsTooCloseToBomb(spawnPosition))
+        {
+            // Recalculate spawn position
+            spawnPosition = playerTransform.position + playerTransform.forward * spawnDistance;
+        }
+
+        return spawnPosition;
+    }
+
+    bool IsTooCloseToBomb(Vector3 position)
+    {
+        foreach (Vector3 bombPosition in bombPositions)
+        {
+            if (Vector3.Distance(position, bombPosition) < minDistanceBetweenBombs)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void AddBombPosition(Vector3 position)
+    {
+        bombPositions.Add(position);
     }
 }
