@@ -5,18 +5,22 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 5f;
+    public BombSpawner bombSpawner;
 
-    // Update is called once per frame
     void Update()
     {
-        // Get input from the player
+        // Move the player forward automatically
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+
+        // Check for player input for left and right movement
         float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        float movement = horizontalInput * speed * Time.deltaTime;
+        transform.Translate(Vector3.right * movement, Space.Self);
 
-        // Calculate movement direction
-        Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput) * speed * Time.deltaTime;
-
-        // Move the player
-        transform.Translate(movement, Space.Self);
+        // Check for bomb spawn
+        if (Input.GetKeyDown(KeyCode.Space) && bombSpawner != null)
+        {
+            bombSpawner.SpawnBomb();
+        }
     }
 }
