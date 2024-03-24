@@ -5,11 +5,22 @@ using UnityEngine;
 
 public class DisplayScore : MonoBehaviour
 {
+    private int score = 0;
     public TextMeshProUGUI scoreText;
 
     void Start()
     {
-        int score = PlayerPrefs.GetInt("Score", 0);
-        scoreText.text = "Score: " + score.ToString();
+        UpdateScoreUI();
+    }
+
+    public void IncreaseScore(int amount)
+    {
+        score += amount;
+        UpdateScoreUI();
+    }
+
+    void UpdateScoreUI()
+    {
+        scoreText.text = "Score: " + score;
     }
 }

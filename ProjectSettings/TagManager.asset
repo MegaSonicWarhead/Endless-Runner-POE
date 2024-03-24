@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Bomb
   - Obstacle
+  - Pickup
+  - FlyPickup
   layers:
   - Default
   - TransparentFX

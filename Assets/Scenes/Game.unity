@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 290106490}
   m_Layer: 0
   m_Name: BombSpawn
-  m_TagString: Untagged
+  m_TagString: Bomb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -229,9 +229,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bombPrefab: {fileID: 8335479978932996364, guid: b59c98b15158b534491074d67db9c222, type: 3}
   playerTransform: {fileID: 1526340296}
-  spawnInterval: 2
   spawnDistance: 10
   minDistanceBetweenBombs: 2
+  bombSpawnRadius: 10
   bombTimerDuration: 5
 --- !u!4 &290106491
 Transform:
@@ -339,6 +339,56 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1526340296}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &518529187
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 518529189}
+  - component: {fileID: 518529188}
+  m_Layer: 0
+  m_Name: PickUps
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &518529188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518529187}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69fcac4a5237f134baff0eee0b1c2a30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickupType: 0
+  flyPickup: {fileID: 4478751921265098982, guid: 7510f28dc58fba3448d95c8ab823a1da, type: 3}
+  spawnDistance: 10
+  spawnInterval: 10
+  minDistanceBetweenPickups: 5
+  player: {fileID: 1526340289}
+--- !u!4 &518529189
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518529187}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 5.0999994, z: 37.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &543198903
 GameObject:
@@ -1507,9 +1557,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstaclePrefabs:
   - {fileID: 8335479978932996364, guid: b59c98b15158b534491074d67db9c222, type: 3}
-  - {fileID: 745546622442691684, guid: 14fe9deeeb459b24da170eefbba4cc22, type: 3}
+  - {fileID: 1113092202546470021, guid: 9c6a079a8ca534941b06c2abc595228b, type: 3}
   - {fileID: 981193653798292097, guid: a27411b9d969cb1419b758c99c008e98, type: 3}
   - {fileID: 1810687293214149860, guid: 955a3b9b10c66b448b47db4a8f2b9d83, type: 3}
+  - {fileID: 745546622442691684, guid: 14fe9deeeb459b24da170eefbba4cc22, type: 3}
+  - {fileID: 4478751921265098982, guid: 7510f28dc58fba3448d95c8ab823a1da, type: 3}
   initialPoolSize: 10
 --- !u!4 &806123419
 Transform:
@@ -1765,6 +1817,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc96d679c3e60884bbdbe2bc8893054b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1065687841
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1065687843}
+  - component: {fileID: 1065687842}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1065687842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065687841}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a08f7a55262328f499e93a149a0d1188, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 558547340}
+--- !u!4 &1065687843
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065687841}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 5.0999994, z: 37.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1282750936
 GameObject:
   m_ObjectHideFlags: 0
@@ -1795,12 +1892,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 1526340296}
-  spawnDistance: 10
-  minDistanceBetweenBombs: 5
-  obstaclePrefabs:
+  groundSpawnDistance: 10
+  airSpawnDistance: 5
+  minDistanceBetweenObstacles: 10
+  groundObstaclePrefabs:
   - {fileID: 745546622442691684, guid: 14fe9deeeb459b24da170eefbba4cc22, type: 3}
-  - {fileID: 981193653798292097, guid: a27411b9d969cb1419b758c99c008e98, type: 3}
   - {fileID: 1810687293214149860, guid: 955a3b9b10c66b448b47db4a8f2b9d83, type: 3}
+  - {fileID: 981193653798292097, guid: a27411b9d969cb1419b758c99c008e98, type: 3}
+  airObstaclePrefabs:
+  - {fileID: 1113092202546470021, guid: 9c6a079a8ca534941b06c2abc595228b, type: 3}
 --- !u!4 &1282750938
 Transform:
   m_ObjectHideFlags: 0
@@ -2120,7 +2220,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  horizontalSpeed: 3
+  flySpeed: 5
+  flyHeight: 5
+  forwardSpeed: 5
   bombSpawner: {fileID: 290106490}
+  flyDuration: 5
 --- !u!54 &1526340292
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3461,3 +3566,5 @@ SceneRoots:
   - {fileID: 290106491}
   - {fileID: 806123419}
   - {fileID: 1282750938}
+  - {fileID: 518529189}
+  - {fileID: 1065687843}
