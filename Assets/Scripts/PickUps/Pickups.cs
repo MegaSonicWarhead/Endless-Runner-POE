@@ -31,8 +31,44 @@ public class Pickups : MonoBehaviour
             // Calculate spawn position
             Vector3 spawnPosition = player.transform.position + player.transform.forward * spawnDistance;
 
+            // Check if the spawn position is too close to any obstacles or bombs
+            if (IsTooCloseToObstacle(spawnPosition, minDistanceBetweenPickups) || IsTooCloseToBomb(spawnPosition, minDistanceBetweenPickups))
+            {
+                continue; // Skip this spawn attempt
+            }
+
             // Spawn the FlyPickup prefab
             Instantiate(flyPickup, spawnPosition, Quaternion.identity);
         }
+    }
+
+    static bool IsTooCloseToObstacle(Vector3 position, float minDistance)
+    {
+        // Check if the spawn position is too close to any obstacles
+        Collider[] colliders = Physics.OverlapSphere(position, minDistance);
+        foreach (Collider collider in colliders)
+        {
+            if (collider.CompareTag("Obstacle"))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    static bool IsTooCloseToBomb(Vector3 position, float minDistance)
+    {
+        // Check if the spawn position is too close to any bombs
+        Collider[] colliders = Physics.OverlapSphere(position, minDistance);
+        foreach (Collider collider in colliders)
+        {
+            if (collider.CompareTag("Bomb"))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

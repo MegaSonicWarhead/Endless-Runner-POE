@@ -229,10 +229,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bombPrefab: {fileID: 8335479978932996364, guid: b59c98b15158b534491074d67db9c222, type: 3}
   playerTransform: {fileID: 1526340296}
+  spawnInterval: 2
   spawnDistance: 10
   minDistanceBetweenBombs: 2
-  bombSpawnRadius: 10
-  bombTimerDuration: 5
+  bombTimerDuration: 2
 --- !u!4 &290106491
 Transform:
   m_ObjectHideFlags: 0
@@ -242,7 +242,7 @@ Transform:
   m_GameObject: {fileID: 290106489}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.877615, y: 124.65918, z: 90}
+  m_LocalPosition: {x: 10.877615, y: 2.5, z: 163}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -364,7 +364,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 518529187}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69fcac4a5237f134baff0eee0b1c2a30, type: 3}
   m_Name: 
@@ -1556,13 +1556,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstaclePrefabs:
-  - {fileID: 8335479978932996364, guid: b59c98b15158b534491074d67db9c222, type: 3}
   - {fileID: 1113092202546470021, guid: 9c6a079a8ca534941b06c2abc595228b, type: 3}
   - {fileID: 981193653798292097, guid: a27411b9d969cb1419b758c99c008e98, type: 3}
   - {fileID: 1810687293214149860, guid: 955a3b9b10c66b448b47db4a8f2b9d83, type: 3}
   - {fileID: 745546622442691684, guid: 14fe9deeeb459b24da170eefbba4cc22, type: 3}
   - {fileID: 4478751921265098982, guid: 7510f28dc58fba3448d95c8ab823a1da, type: 3}
-  initialPoolSize: 10
+  - {fileID: 8335479978932996364, guid: b59c98b15158b534491074d67db9c222, type: 3}
+  initialPoolSize: 1
 --- !u!4 &806123419
 Transform:
   m_ObjectHideFlags: 0
@@ -1886,7 +1886,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1282750936}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c2799e0de50d4b4e9427e3cdc878740, type: 3}
   m_Name: 
@@ -1897,8 +1897,8 @@ MonoBehaviour:
   minDistanceBetweenObstacles: 10
   groundObstaclePrefabs:
   - {fileID: 745546622442691684, guid: 14fe9deeeb459b24da170eefbba4cc22, type: 3}
-  - {fileID: 1810687293214149860, guid: 955a3b9b10c66b448b47db4a8f2b9d83, type: 3}
   - {fileID: 981193653798292097, guid: a27411b9d969cb1419b758c99c008e98, type: 3}
+  - {fileID: 1810687293214149860, guid: 955a3b9b10c66b448b47db4a8f2b9d83, type: 3}
   airObstaclePrefabs:
   - {fileID: 1113092202546470021, guid: 9c6a079a8ca534941b06c2abc595228b, type: 3}
 --- !u!4 &1282750938

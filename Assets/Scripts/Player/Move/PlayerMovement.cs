@@ -31,10 +31,15 @@ public class PlayerMovement : MonoBehaviour
             transform.Translate(movement, Space.Self);
 
             // Check for bomb spawn
-            if (Input.GetKeyDown(KeyCode.Space) && bombSpawner != null)
+            if (bombSpawner != null && transform.position.z > 0)
             {
+                // Calculate the spawn position in front of the player
+                Vector3 spawnPosition = transform.position + transform.forward * bombSpawner.spawnDistance;
                 bombSpawner.SpawnBomb();
             }
+
+            // Move forward automatically
+            transform.Translate(Vector3.forward * forwardSpeed * Time.deltaTime);
         }
         else
         {
@@ -50,9 +55,6 @@ public class PlayerMovement : MonoBehaviour
                 transform.position = new Vector3(transform.position.x, flyHeight, transform.position.z);
             }
         }
-
-        // Move forward automatically
-        transform.Translate(Vector3.forward * forwardSpeed * Time.deltaTime);
     }
 
     public void StartFlying()
