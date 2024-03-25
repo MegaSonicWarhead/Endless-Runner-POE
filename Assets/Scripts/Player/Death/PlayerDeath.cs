@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class PlayerDeath : MonoBehaviour
 {
-    private int score = 0;
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Bomb"))
@@ -14,27 +12,14 @@ public class PlayerDeath : MonoBehaviour
             // Destroy the bomb
             Destroy(other.gameObject);
 
-            // Increment score
-            score++;
+            // Get the score from the ScoreManager
+            int finalScore = ScoreManager.Instance.score;
 
             // Show the credits scene
             SceneManager.LoadScene("Credit screen");
 
             // Pass the score to the credits scene
-            PlayerPrefs.SetInt("Score", score);
-        }
-        else if (other.CompareTag("Obstacle"))
-        {
-            // Increment score when colliding with an obstacle
-            score++;
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        // Increment score when passing obstacles
-        if (other.CompareTag("Obstacle"))
-        {
-            score++;
+            PlayerPrefs.SetInt("Score", finalScore);
         }
     }
 }

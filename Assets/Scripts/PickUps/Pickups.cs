@@ -7,38 +7,48 @@ public class Pickups : MonoBehaviour
     public enum PickupType
     {
         Fly,
+        //Speed,
         // Add more pickup types here
     }
 
-    public PickupType pickupType;
-    public GameObject flyPickup; // Reference to the FlyPickup prefab
-    public float spawnDistance = 10f; // Distance in front of the player to spawn the pickup
-    public float spawnInterval = 5f; // Interval between spawn attempts
-    public float minDistanceBetweenPickups = 2f; // Minimum distance between spawned pickups
+    [System.Serializable]
+    public class PickupInfo
+    {
+        public PickupType type;
+        public GameObject prefab;
+        public float spawnDistance = 10f; // Distance in front of the player to spawn the pickup
+        public float spawnInterval = 5f; // Interval between spawn attempts
+        public float minDistanceBetweenPickups = 2f; // Minimum distance between spawned pickups
+    }
+
+    public List<PickupInfo> pickupInfos;
     public GameObject player;
 
     void Start()
     {
-        StartCoroutine(SpawnFlyPickup());
+        foreach (var pickupInfo in pickupInfos)
+        {
+            StartCoroutine(SpawnPickup(pickupInfo));
+        }
     }
 
-    IEnumerator SpawnFlyPickup()
+    IEnumerator SpawnPickup(PickupInfo pickupInfo)
     {
         while (true)
         {
-            yield return new WaitForSeconds(spawnInterval);
+            yield return new WaitForSeconds(pickupInfo.spawnInterval);
 
             // Calculate spawn position
-            Vector3 spawnPosition = player.transform.position + player.transform.forward * spawnDistance;
+            Vector3 spawnPosition = player.transform.position + player.transform.forward * pickupInfo.spawnDistance;
 
             // Check if the spawn position is too close to any obstacles or bombs
-            if (IsTooCloseToObstacle(spawnPosition, minDistanceBetweenPickups) || IsTooCloseToBomb(spawnPosition, minDistanceBetweenPickups))
+            if (IsTooCloseToObstacle(spawnPosition, pickupInfo.minDistanceBetweenPickups) || IsTooCloseToBomb(spawnPosition, pickupInfo.minDistanceBetweenPickups))
             {
                 continue; // Skip this spawn attempt
             }
 
-            // Spawn the FlyPickup prefab
-            Instantiate(flyPickup, spawnPosition, Quaternion.identity);
+            // Spawn the pickup prefab
+            Instantiate(pickupInfo.prefab, spawnPosition, Quaternion.identity);
         }
     }
 

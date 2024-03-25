@@ -369,11 +369,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69fcac4a5237f134baff0eee0b1c2a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupType: 0
-  flyPickup: {fileID: 4478751921265098982, guid: 7510f28dc58fba3448d95c8ab823a1da, type: 3}
-  spawnDistance: 10
-  spawnInterval: 10
-  minDistanceBetweenPickups: 5
+  pickupInfos:
+  - type: 0
+    prefab: {fileID: 4478751921265098982, guid: 7510f28dc58fba3448d95c8ab823a1da, type: 3}
+    spawnDistance: 5
+    spawnInterval: 10
+    minDistanceBetweenPickups: 2
   player: {fileID: 1526340289}
 --- !u!4 &518529189
 Transform:
@@ -1841,7 +1842,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1065687841}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a08f7a55262328f499e93a149a0d1188, type: 3}
   m_Name: 
@@ -2225,7 +2226,7 @@ MonoBehaviour:
   flyHeight: 5
   forwardSpeed: 5
   bombSpawner: {fileID: 290106490}
-  flyDuration: 5
+  flyDuration: 3
 --- !u!54 &1526340292
 Rigidbody:
   m_ObjectHideFlags: 0

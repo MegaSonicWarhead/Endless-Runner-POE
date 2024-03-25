@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
             // Flying movement code
             float verticalInput = Input.GetAxis("Vertical"); // Get vertical input for flying up/down
             float horizontalInput = Input.GetAxis("Horizontal"); // Get horizontal input for flying left/right
-            Vector3 flyMovement = new Vector3(horizontalInput, 0f, verticalInput) * flySpeed * Time.deltaTime;
+            Vector3 flyMovement = new Vector3(horizontalInput, 0f, 1f) * flySpeed * Time.deltaTime; // Always move forward
             transform.Translate(flyMovement, Space.Self);
 
             // Limit flying height
@@ -65,6 +65,17 @@ public class PlayerMovement : MonoBehaviour
     public void StopFlying()
     {
         isFlying = false;
+        // Fall to the ground
+        StartCoroutine(FallToGroundCoroutine());
+    }
+
+    IEnumerator FallToGroundCoroutine()
+    {
+        while (transform.position.y > 0)
+        {
+            transform.Translate(Vector3.down * speed * Time.deltaTime); // Adjust speed as needed
+            yield return null;
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -79,6 +90,7 @@ public class PlayerMovement : MonoBehaviour
             Destroy(other.gameObject);
         }
     }
+
     IEnumerator FlyDurationCoroutine()
     {
         yield return new WaitForSeconds(flyDuration);

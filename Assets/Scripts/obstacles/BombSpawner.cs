@@ -59,19 +59,36 @@ public class BombSpawner : MonoBehaviour
 
     Vector3 CalculateSpawnPosition()
     {
-        Vector3 spawnPosition = playerTransform.position + playerTransform.forward * spawnDistance;
+        // Set maximum number of attempts to find a suitable spawn position
+        int maxAttempts = 10;
+        int attempts = 0;
 
-        // Check if the spawn position is too close to the player or any existing obstacles
-        Collider[] colliders = Physics.OverlapSphere(spawnPosition, minDistanceBetweenBombs);
-        foreach (Collider collider in colliders)
+        while (attempts < maxAttempts)
         {
-            if (collider.CompareTag("Player") || collider.CompareTag("Obstacle") || collider.CompareTag("Pickup"))
+            Vector3 spawnPosition = playerTransform.position + playerTransform.forward * spawnDistance;
+
+            // Check if the spawn position is too close to the player or any existing obstacles
+            Collider[] colliders = Physics.OverlapSphere(spawnPosition, minDistanceBetweenBombs);
+            bool tooClose = false;
+            foreach (Collider collider in colliders)
             {
-                // Recalculate spawn position if too close
-                return CalculateSpawnPosition();
+                if (collider.CompareTag("Player") || collider.CompareTag("Obstacle") || collider.CompareTag("Pickup"))
+                {
+                    tooClose = true;
+                    break;
+                }
             }
+
+            if (!tooClose)
+            {
+                return spawnPosition;
+            }
+
+            // Increment attempts and try again
+            attempts++;
         }
 
-        return spawnPosition;
+        // Return a default spawn position if maximum attempts reached
+        return playerTransform.position + playerTransform.forward * spawnDistance;
     }
 }

@@ -26,6 +26,7 @@ public class FlyPickup : MonoBehaviour
             {
                 playerMovement.StartFlying();
                 StartCoroutine(FlyDurationCoroutine(playerMovement));
+                Destroy(gameObject); // Destroy the FlyPickup
             }
         }
     }
@@ -34,6 +35,5 @@ public class FlyPickup : MonoBehaviour
     {
         yield return new WaitForSeconds(flyDuration);
         playerMovement.StopFlying();
-        Destroy(gameObject);
     }
 }

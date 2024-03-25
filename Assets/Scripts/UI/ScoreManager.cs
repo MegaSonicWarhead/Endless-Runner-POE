@@ -7,7 +7,7 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
-    private int score;
+    public int score;
 
     private static ScoreManager instance;
 

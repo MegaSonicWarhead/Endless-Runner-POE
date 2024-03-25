@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class DisplayScore : MonoBehaviour
 {
-    private int score = 0;
     public TextMeshProUGUI scoreText;
 
     void Start()
@@ -13,14 +12,9 @@ public class DisplayScore : MonoBehaviour
         UpdateScoreUI();
     }
 
-    public void IncreaseScore(int amount)
-    {
-        score += amount;
-        UpdateScoreUI();
-    }
-
     void UpdateScoreUI()
     {
-        scoreText.text = "Score: " + score;
+        int finalScore = PlayerPrefs.GetInt("Score", 0); // Get the final score from PlayerPrefs, defaulting to 0
+        scoreText.text = "Score: " + finalScore;
     }
 }
