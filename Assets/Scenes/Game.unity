@@ -1848,6 +1848,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 558547340}
+  score: 0
 --- !u!4 &1065687843
 Transform:
   m_ObjectHideFlags: 0
@@ -1895,7 +1896,8 @@ MonoBehaviour:
   playerTransform: {fileID: 1526340296}
   groundSpawnDistance: 10
   airSpawnDistance: 5
-  minDistanceBetweenObstacles: 10
+  minDistanceBetweenObstacles: 5
+  spawnInterval: 2
   groundObstaclePrefabs:
   - {fileID: 745546622442691684, guid: 14fe9deeeb459b24da170eefbba4cc22, type: 3}
   - {fileID: 981193653798292097, guid: a27411b9d969cb1419b758c99c008e98, type: 3}
@@ -2226,7 +2228,7 @@ MonoBehaviour:
   flyHeight: 5
   forwardSpeed: 5
   bombSpawner: {fileID: 290106490}
-  flyDuration: 3
+  flyDuration: 5
 --- !u!54 &1526340292
 Rigidbody:
   m_ObjectHideFlags: 0

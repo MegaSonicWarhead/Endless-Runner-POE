@@ -71,11 +71,14 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator FallToGroundCoroutine()
     {
-        while (transform.position.y > 0)
+        while (transform.position.y > 1.6f)
         {
             transform.Translate(Vector3.down * speed * Time.deltaTime); // Adjust speed as needed
             yield return null;
         }
+
+        // Set the player's Y position to 1.6
+        transform.position = new Vector3(transform.position.x, 1.6f, transform.position.z);
     }
 
     void OnTriggerEnter(Collider other)

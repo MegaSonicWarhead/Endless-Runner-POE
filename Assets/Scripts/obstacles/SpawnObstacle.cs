@@ -8,26 +8,36 @@ public class SpawnObstacle : MonoBehaviour
     public float groundSpawnDistance = 10f; // Distance in front of the player to spawn ground obstacles
     public float airSpawnDistance = 20f; // Distance in front of the player to spawn air obstacles
     public float minDistanceBetweenObstacles = 5f; // Minimum distance between spawned obstacles
+    public float spawnInterval = 2f; // Interval between obstacle spawns
     public GameObject[] groundObstaclePrefabs; // Array of ground obstacle prefabs
     public GameObject[] airObstaclePrefabs; // Array of air obstacle prefabs
 
     private static List<Vector3> obstaclePositions = new List<Vector3>();
+    private float timer = 0f;
 
     void Update()
     {
+        timer += Time.deltaTime;
+
         // Calculate spawn positions for ground and air obstacles
         Vector3 groundSpawnPos = playerTransform.position + playerTransform.forward * groundSpawnDistance;
         Vector3 airSpawnPos = playerTransform.position + playerTransform.forward * airSpawnDistance;
 
-        // Check if there is no obstacle currently spawned
-        if (IsTooCloseToObstacle(groundSpawnPos, minDistanceBetweenObstacles))
+        // Check if enough time has passed to spawn a new obstacle
+        if (timer >= spawnInterval)
         {
-            SpawnObstacleAtPosition(groundObstaclePrefabs, groundSpawnPos);
-        }
+            // Check if there is no obstacle currently spawned
+            if (IsTooCloseToObstacle(groundSpawnPos, minDistanceBetweenObstacles))
+            {
+                SpawnObstacleAtPosition(groundObstaclePrefabs, groundSpawnPos);
+            }
 
-        if (IsTooCloseToObstacle(airSpawnPos, minDistanceBetweenObstacles) && PlayerMovement.isFlying)
-        {
-            SpawnObstacleAtPosition(airObstaclePrefabs, airSpawnPos);
+            if (IsTooCloseToObstacle(airSpawnPos, minDistanceBetweenObstacles) && PlayerMovement.isFlying)
+            {
+                SpawnObstacleAtPosition(airObstaclePrefabs, airSpawnPos);
+            }
+
+            timer = 0f; // Reset the timer
         }
     }
 
