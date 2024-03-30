@@ -15,6 +15,7 @@ public class SpawnObstacle : MonoBehaviour
     private static List<Vector3> obstaclePositions = new List<Vector3>();
     private float timer = 0f;
 
+    //Is Called once per frame
     void Update()
     {
         timer += Time.deltaTime;

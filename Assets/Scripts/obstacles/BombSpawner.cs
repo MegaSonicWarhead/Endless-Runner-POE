@@ -46,7 +46,9 @@ public class BombSpawner : MonoBehaviour
 
     IEnumerator DestroyBombAfterDelay(GameObject bomb, float delay)
     {
-        yield return new WaitForSeconds(delay);
+        yield return new WaitUntil(() => playerTransform.position.z > bomb.transform.position.z + 2f);
+        
+        //yield return new WaitForSeconds(delay);
 
         // Check if the bomb still exists (it might have been destroyed by a collision)
         if (bomb != null)
