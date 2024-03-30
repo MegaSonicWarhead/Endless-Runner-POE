@@ -28,6 +28,9 @@ public class FlyPickup : MonoBehaviour
                 StartCoroutine(FlyDurationCoroutine(playerMovement));
                 Destroy(gameObject); // Destroy the FlyPickup
             }
+
+
+
         }
     }
 

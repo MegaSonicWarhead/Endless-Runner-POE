@@ -12,6 +12,7 @@ public class SpawnObstacle : MonoBehaviour
     public GameObject[] groundObstaclePrefabs; // Array of ground obstacle prefabs
     public GameObject[] airObstaclePrefabs; // Array of air obstacle prefabs
 
+    private List<GameObject> activeObstacles = new List<GameObject>();
     private static List<Vector3> obstaclePositions = new List<Vector3>();
     private float timer = 0f;
 
@@ -40,18 +41,32 @@ public class SpawnObstacle : MonoBehaviour
 
             timer = 0f; // Reset the timer
         }
+
+        DespawnObstacle();
     }
 
+    private void DespawnObstacle()
+    {
+        foreach (GameObject obstacle in activeObstacles)
+        {
+            if((obstacle.transform.position.z < playerTransform.position.z) && obstacle != null)
+            {
+                activeObstacles.Remove(obstacle);
+                Destroy(obstacle);
+            }
+        }
+    }
     void SpawnObstacleAtPosition(GameObject[] obstaclePrefabs, Vector3 spawnPos)
     {
         // Randomly select an obstacle prefab
         GameObject obstaclePrefab = obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)];
 
         // Spawn the obstacle
-        Instantiate(obstaclePrefab, spawnPos, Quaternion.identity);
+        GameObject obstacle = Instantiate(obstaclePrefab, spawnPos, Quaternion.identity);
 
         // Add the obstacle position to the list
-        obstaclePositions.Add(spawnPos);
+        activeObstacles.Add(obstacle);
+        obstaclePositions.Add(spawnPos);  
     }
 
     static bool IsTooCloseToObstacle(Vector3 position, float minDistance)
@@ -66,4 +81,5 @@ public class SpawnObstacle : MonoBehaviour
 
         return true;
     }
+
 }

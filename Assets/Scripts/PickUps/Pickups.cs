@@ -16,7 +16,7 @@ public class Pickups : MonoBehaviour
     {
         public PickupType type;
         public GameObject prefab;
-        public float spawnDistance = 10f; // Distance in front of the player to spawn the pickup
+        public float spawnDistance = 30f; // Distance in front of the player to spawn the pickup
         public float spawnInterval = 5f; // Interval between spawn attempts
         public float minDistanceBetweenPickups = 2f; // Minimum distance between spawned pickups
     }

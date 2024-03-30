@@ -15,6 +15,9 @@ public class PlayerMovement : MonoBehaviour
     private DisplayScore displayScore;
     public float flyDuration = 5f;
 
+    private float horizontalInput;
+    private float verticalInput;
+
     void Start()
     {
         displayScore = FindObjectOfType<DisplayScore>();
@@ -22,11 +25,13 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+
         if (!isFlying)
         {
             // Normal movement logic
-            float horizontalInput = Input.GetAxis("Horizontal");
-            float verticalInput = Input.GetAxis("Vertical");
+
+            horizontalInput = Input.GetAxis("Horizontal");
+            verticalInput = Input.GetAxis("Vertical");
             Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput) * speed * Time.deltaTime;
             transform.Translate(movement, Space.Self);
 
@@ -43,11 +48,12 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            // Flying movement code
+            //Flying movement code
             float verticalInput = Input.GetAxis("Vertical"); // Get vertical input for flying up/down
             float horizontalInput = Input.GetAxis("Horizontal"); // Get horizontal input for flying left/right
             Vector3 flyMovement = new Vector3(horizontalInput, 0f, 1f) * flySpeed * Time.deltaTime; // Always move forward
             transform.Translate(flyMovement, Space.Self);
+
 
             // Limit flying height
             if (transform.position.y < flyHeight)
