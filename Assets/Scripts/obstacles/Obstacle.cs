@@ -18,5 +18,11 @@ public class Obstacle : MonoBehaviour
             scoreManager.IncreaseScoreOnPassingObstacle(1);
             Destroy(gameObject);
         }
+        else if (other.CompareTag("Finish"))
+        {
+            Destroy(gameObject);
+        }
     }
+
+
 }
