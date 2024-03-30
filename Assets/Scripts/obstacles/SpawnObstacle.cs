@@ -42,21 +42,8 @@ public class SpawnObstacle : MonoBehaviour
             timer = 0f; // Reset the timer
         }
 
-        //DespawnObstacle();
     }
 
-    //private void DespawnObstacle()
-    //{
-    //    foreach (GameObject obstacle in activeObstacles)
-    //    {
-    //        if((obstacle.transform.position.z < playerTransform.position.z) && obstacle != null)
-    //        {
-    //            activeObstacles.Remove(obstacle); //remove the object from the list
-                
-    //            Destroy(obstacle); //Destroy the Object.
-    //        }
-    //    }
-    //}
     void SpawnObstacleAtPosition(GameObject[] obstaclePrefabs, Vector3 spawnPos)
     {
         // Randomly select an obstacle prefab

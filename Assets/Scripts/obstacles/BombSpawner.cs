@@ -11,7 +11,7 @@ public class BombSpawner : MonoBehaviour
     public float spawnDistance = 10f;
     public float minDistanceBetweenBombs = 2f;
     public float bombTimerDuration = 5f;
-
+    //[SerializeField] private Bomb bomb;
     private float timer = 0f;
     private bool isBombSpawned = false;
     private GameObject currentBomb;
@@ -20,7 +20,7 @@ public class BombSpawner : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (!isBombSpawned && timer >= spawnInterval && playerTransform.position.z > 0)
+        if (timer >= spawnInterval && playerTransform.position.z > 0)
         {
             SpawnBomb();
             timer = 0f;
@@ -46,7 +46,7 @@ public class BombSpawner : MonoBehaviour
     IEnumerator DestroyBombAfterDelay(GameObject bomb, float delay)
     {
         //yield return new WaitUntil(() => playerTransform.position.z > bomb.transform.position.z + 2f);
-        
+
         yield return new WaitForSeconds(delay);
 
         // Check if the bomb still exists (it might have been destroyed by a collision)
@@ -57,7 +57,6 @@ public class BombSpawner : MonoBehaviour
             isBombSpawned = false;
         }
     }
-
 
 
 
