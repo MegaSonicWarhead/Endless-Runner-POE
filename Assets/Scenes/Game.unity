@@ -445,7 +445,7 @@ MonoBehaviour:
   pickupInfos:
   - type: 0
     prefab: {fileID: 4478751921265098982, guid: 7510f28dc58fba3448d95c8ab823a1da, type: 3}
-    spawnDistance: 5
+    spawnDistance: 10
     spawnInterval: 10
     minDistanceBetweenPickups: 2
   player: {fileID: 1526340289}
@@ -2036,7 +2036,7 @@ MonoBehaviour:
   playerTransform: {fileID: 1526340296}
   groundSpawnDistance: 30
   airSpawnDistance: 5
-  minDistanceBetweenObstacles: 5
+  minDistanceBetweenObstacles: 10
   spawnInterval: 2
   groundObstaclePrefabs:
   - {fileID: 745546622442691684, guid: 14fe9deeeb459b24da170eefbba4cc22, type: 3}
@@ -2364,9 +2364,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   horizontalSpeed: 3
-  flySpeed: 5
+  flySpeed: 15
   flyHeight: 5
-  forwardSpeed: 10
+  forwardSpeed: 15
   bombSpawner: {fileID: 290106490}
   flyDuration: 5
 --- !u!54 &1526340292
