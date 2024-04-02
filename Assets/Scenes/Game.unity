@@ -2035,7 +2035,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 1526340296}
   groundSpawnDistance: 30
-  airSpawnDistance: 5
+  airSpawnDistance: 10
   minDistanceBetweenObstacles: 10
   spawnInterval: 2
   groundObstaclePrefabs:
