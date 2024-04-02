@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float horizontalSpeed = 3f;
     public float flySpeed = 5f;
     public float flyHeight = 5f;
-    public float forwardSpeed = 7f;
+    public float forwardSpeed = 10f;
     public BombSpawner bombSpawner;
     public static bool isFlying = false;
     private DisplayScore displayScore;

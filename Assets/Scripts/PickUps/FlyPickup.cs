@@ -6,33 +6,33 @@ public class FlyPickup : MonoBehaviour
 {
     public float flyDuration = 5f;
 
-    private MeshRenderer meshRenderer;
+    //private MeshRenderer meshRenderer;
 
     void Start()
     {
         // Get the MeshRenderer component
-        meshRenderer = GetComponent<MeshRenderer>();
+        //meshRenderer = GetComponent<MeshRenderer>();
 
         // Disable the MeshRenderer initially
-        meshRenderer.enabled = true;
+       // meshRenderer.enabled = true;
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
-            if (playerMovement != null)
-            {
-                playerMovement.StartFlying();
-                StartCoroutine(FlyDurationCoroutine(playerMovement));
-                Destroy(gameObject); // Destroy the FlyPickup
-            }
+    //void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.CompareTag("Player"))
+    //    {
+    //        PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
+    //        if (playerMovement != null)
+    //        {
+    //            playerMovement.StartFlying();
+    //            StartCoroutine(FlyDurationCoroutine(playerMovement));
+    //            Destroy(gameObject); // Destroy the FlyPickup
+    //        }
 
 
 
-        }
-    }
+    //    }
+    //}
 
     IEnumerator FlyDurationCoroutine(PlayerMovement playerMovement)
     {
